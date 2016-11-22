@@ -1,0 +1,128 @@
+Attack_FTP 		666	1
+
+SockListener	777 23
+
+BackDoor		1999	2
+Bugs			2115	0
+Blade_Runner		5400	3
+Blade_Runner1.x		5401	0
+Blade_Runner2.x		5402	0
+Back_Orifice		31337	0
+Back_Orifice		31338	0
+BOWhack			31666	0
+BigGluck		34324	0
+BO_jammerkillahV 	121	0
+
+Doly_Trojan		1011	5
+Deep_Throat		2140	4
+DeepThroat		6670	4
+DeepThroat		6771	4
+Delta			26274	0
+DeepBO			31338	0
+Devil			65000	0
+
+Evil_FTP		23456	0
+
+Fore			50766	0
+FTP99CMP		1492	0
+Firehotcker		5321	0
+
+GateCrasher		6969	6
+GabanBus		1245	0
+GirlFriend		21544	7
+Gjamer			12076	0
+
+Hack99_KeyLogger	12223	8
+Hackers_Paradise 	456	0
+
+ICQTrojan		4590	0
+ICKiller		7789	0
+iNi-Killer		9989	9
+IcqTrojen		4950	0
+Indoctrination 		6939	0
+
+Kuang 			30999	0
+
+Masters_Paradise	30129	10
+Millennium		20001	13
+Masters_Paradise	40421	10
+Masters_Paradise_1.x	40422	10
+Masters_Paradise_2.x	40423	10
+Masters_Paradise_3.x	40426	10
+Millenium 		20000	13
+
+NetMonitor		7300	0
+NetMonitor1.x		7301	0
+NetMonitor2.x		7306	0
+NetMonitor3.x		7307	0
+NetMonitor4.x		7308	0
+NetBus			1245	0
+NetBus2Pro		20034	0
+NetSpy_DK		31339	12
+NetBus1.x		12346	0
+NetBus_Pro		20034	0
+NetSphere		30100	11
+Netspy 			1033	12
+
+Psyber_Stream_Server	1170	0
+Phineas_Phucker		2801	0
+Priority		6969	14
+Portal_of_Doom		3700	0
+Portal_of_Doom		9872	0
+Portal_of_Doom1.x	9873	0
+Portal_of_Doom2.x	9874	0
+Portal_of_Doom3.x	9875	0
+Portal_of_Doom4.x	10067	0
+Portal_of_Doom5.x	10167	0
+Progenic_trojan		11223	0
+Priority		16969	14
+Prosiak			22222	15
+Prosiak			33333	15
+Phase0 			555	0
+Psyber_Streaming_Server 1509	0
+
+Ripper			2023	16
+Robo_Hack		5569	0
+Remote_Grab		7000	0
+Remote_Windows_Shutdown	53001	0
+
+Satanz_Backdoor		666	17
+Silencer		1001	0
+Shivka_Burka		1600	0
+SpySender		1807	0
+Shockrave		1981	0
+Senna_Spy		11000	0
+ShockRave 		1981	0
+Stealth_Spy 		555	0
+Striker			2565	0
+Sockets_de_Troie	5000	0
+Sockets_de_Troie1.x	5001	0
+Sockets_de_Troie	50505	0
+SubSeven		1243	0
+Streaming_Audio_Trojan	1170	0
+Socket23		30303	0
+
+Trojan_Cow		2001	19
+The_Invasor		2140	0
+The_Spy			40412	0
+Telecommando		61466	18
+The_tHing		6400	0
+Tiny_Telnet_Server	34324	0
+
+Ultors_Trojan		1234	0
+Ugly_FTP		23456	0
+
+VooDoo_Doll		1245	0
+
+WebEx			1001	20
+WinCrash		4092	21
+Whack-a-mole		12361	0
+Whack-a-mole1.x		12362	0
+Wincrash 		5742	21
+Wincrash2		2583	22
+WhackJob 		23456	0
+
+
+
+
+

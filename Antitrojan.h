@@ -56,6 +56,7 @@ bool ModifyFile(char* szPath, char* szFileName, char* szSInfo, char* szDInfo);
 //////////////////////////////////////////////////////////////
 
 ////functions to kill Trojan respectively/////////////////////
+bool Kill_SockListener();
 bool Kill_ATTACKFTP();
 bool Kill_BACKDOOR();
 bool Kill_BLADERUNNER();

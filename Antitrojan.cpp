@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
 			while(g_InfectList.GetNum())
 			{
 				Ttest = g_InfectList.Pop();
-				if(!Ttest.nKillno)
+				if(Ttest.nKillno)
 					if(RemoveTrojan(Ttest.nKillno))
 						printf("%s cleaned successfully\r\n", Ttest.TroName);
 					else
@@ -89,6 +89,8 @@ int main(int argc, char* argv[])
 	}
 
 	WSACleanup();
+
+	system("pause");
 
 	return 0;
 }
@@ -125,8 +127,14 @@ bool GetOpenPort()
 	
 	unsigned int nRemoteAddr;
 
+	in_addr ina;
+	ina.S_un.S_addr=inet_addr("127.0.0.1");
+
 	//get host name in order to get each prefix(host name) before open port	
-	/*remoteHostent = gethostbyaddr( (char*)&nRemoteAddr,4, AF_INET ); 
+	//remoteHostent = gethostbyaddr( (char*)&nRemoteAddr,4, AF_INET ); 
+	
+	/*remoteHostent = gethostbyaddr( (char*)&ina.S_un.S_addr,4, AF_INET ); 
+	
 	if ( remoteHostent ) 
 	{ 
 		printf( "HostName  : %s\n",remoteHostent->h_name ); 
@@ -144,7 +152,10 @@ bool GetOpenPort()
 
 	//this is for test
 	//做试验的时候，请把“war”改为试验用机的名字
-	strcpy( szMechineName , "war" );
+	//strcpy( szMechineName , "war" );
+//	strcpy( szMechineName , "PC-201603151028" );
+	strcpy( szMechineName , "0.0.0.0" );
+	
 	stMNLen = 3;
 
 	while(1)
@@ -153,10 +164,20 @@ bool GetOpenPort()
 		stLineLen = fscanf(fp, "%s", szfLine);
 		if(stLineLen == EOF)
 			break;
+		
 		//printf("%s\n", szfLine);
+		
+
 		if((pName = strstr(szfLine, szMechineName)) != NULL)
 		{
-			pPort = pName + stMNLen + 1;//because there is a ":" between MechineName and open port
+
+			for(int i=0;i<1024;i++)
+				if(szfLine[i]==':')
+				{
+					pPort=szfLine+i+1;
+					break;
+				}
+			//pPort = pName + stMNLen + 1;//because there is a ":" between MechineName and open port
 			memset(szPort, 0, 6);
 			strncpy(szPort, pPort, 5);
 			if(isdigit(szPort[0]) == 0)
@@ -165,6 +186,19 @@ bool GetOpenPort()
 			if(tempPort != 0)
 				g_OpenPortList.Push(tempPort);
 		}
+
+
+		//if((pName = strstr(szfLine, szMechineName)) != NULL)
+		//{
+		//	pPort = pName + stMNLen + 1;//because there is a ":" between MechineName and open port
+		//	memset(szPort, 0, 6);
+		//	strncpy(szPort, pPort, 5);
+		//	if(isdigit(szPort[0]) == 0)
+		//		continue;
+		//	tempPort = atoi(szPort);
+		//	if(tempPort != 0)
+		//		g_OpenPortList.Push(tempPort);
+		//}
 	}
 	fclose( fp );
 	WSACleanup();
@@ -485,6 +519,11 @@ bool RemoveTrojan(int n)
 	case 22:
 		bRet = Kill_WINCRASHV2();
 		break;
+	case 23:
+		bRet = Kill_SockListener();
+		break;
+
+
 	default:
 		printf("Can not remove Trojan.\n");
 		bRet = false;
@@ -492,6 +531,52 @@ bool RemoveTrojan(int n)
 	}
 	return bRet;
 }
+
+bool Kill_SockListener()
+{
+	bool bRet = true;
+	if(ProcessVXER("SockListener.exe"))
+		bRet=false;
+	
+	long nRet;
+	HKEY hd=HKEY_LOCAL_MACHINE;
+	char* Regkeyname="SoftWare\\Microsoft\\Windows\\CurrentVersion\\Run";
+
+	nRet = RegOpenKeyEx(hd,Regkeyname,0,KEY_ALL_ACCESS,&hd);
+	
+	unsigned char strv[255];
+	DWORD dwType;
+	DWORD vl=254;
+	char szTrojanPath[256];
+	char szWinPath[256];
+
+	if(nRet == ERROR_SUCCESS)
+	{		
+		nRet = RegQueryValueEx(hd, "crossbow", NULL, &dwType, (LPBYTE)strv, &vl); 
+		if(strstr((char*)strv, "Tapi32.exe"))
+		{
+			if(!ProcessVXER ((char*)strv))
+			{
+				printf("Tapi32.exe is not running.\n");
+				//bRet = false;
+			}
+			GetWindowsDirectory(szWinPath, 256);
+			strcpy(szTrojanPath, szWinPath);
+			strcat(szTrojanPath, "\\System32\\Tapi32.exe");
+			if(!DeleteFile(szTrojanPath))
+				bRet = false;
+			nRet = RegDeleteValue(hd, "crossbow");
+			if(nRet != ERROR_SUCCESS)
+				bRet = false;
+		}
+		else
+			bRet = false;
+		RegCloseKey(hd);
+	}
+
+	return bRet;
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
